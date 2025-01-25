@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+      integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+
+    <div class="cards">
+      <!-- CARD 1 -->
+      <div class="card-container">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="34"
+          height="34"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-circle-plus">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+          <path d="M9 12h6" fill="pink" />
+          <path d="M12 9v6" fill="pink" />
+        </svg>
+        <div class="content-overlay">
+          <img src="./assets/im3.png" />
+          <p class="sample">The search</p>
+        </div>
+
+        <div class="content-behind">
+          <p>
+            Toto and Elna, a mom and daughter duo take on the task of finding
+            Elna's lost sister Suzuka
+          </p>
+        </div>
+      </div>
+      <!-- CARD 2 -->
+      <div class="card-container">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="34"
+          height="34"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-circle-plus">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+          <path d="M9 12h6" fill="pink" />
+          <path d="M12 9v6" fill="pink" />
+        </svg>
+        <div class="content-overlay">
+          <img src="./assets/im2.webp" />
+          <p class="sample">Mio mine</p>
+        </div>
+
+        <div class="content-behind">
+          <p>
+            Kenichi finds an injured rabbit one day, and takes it home. Little
+            does he know he's no ordinary rabbit!
+          </p>
+        </div>
+      </div>
+      <!-- CARD3 -->
+      <div class="card-container">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="34"
+          height="34"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-circle-plus">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+          <path d="M9 12h6" fill="pink" />
+          <path d="M12 9v6" fill="pink" />
+        </svg>
+        <div class="content-overlay">
+          <img src="./assets/im5.png" />
+          <p class="sample">Neverland</p>
+        </div>
+
+        <div class="content-behind">
+          <p>
+            Kaito and Botan are transported to a desolate planet after they
+            stumble upon a device
+          </p>
+        </div>
+      </div>
+    </div>
+    <script>
+      // Animation
+      let cards = document.querySelectorAll(".card-container");
+      let titles = document.querySelectorAll(".content-overlay p");
+      let descriptions = document.querySelectorAll(".content-behind p");
+      let svgs = document.querySelectorAll("svg");
+
+      function animationFunctionStart(element) {
+        const title = element.querySelector(".sample");
+        const image = element.querySelector("img");
+        const description = element.querySelector(".content-behind p");
+        const svg = element.querySelector(".card-container svg");
+
+        gsap.killTweensOf([title, image, description, svg]);
+
+        gsap.to(image, {
+          scale: 1.02,
+        });
+        gsap.to(title, {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "elastic.out(1)",
+        });
+        gsap.to(description, {
+          y: 0,
+          opacity: 1,
+          ease: "elastic.out(1)",
+        });
+        gsap.to(svg, {
+          y: -10,
+          rotate: "+=720",
+          duration: 0.2,
+          opacity: 1,
+        });
+      }
+
+      function animationFunctionReverse(element) {
+        const title = element.querySelector(".sample");
+        const image = element.querySelector("img");
+        const description = element.querySelector(".content-behind p");
+        const svg = element.querySelector(".card-container svg");
+
+        gsap.killTweensOf([title, image, description, svg]);
+
+        gsap.to(image, {
+          scale: 1,
+        });
+        gsap.to(title, {
+          y: 20,
+          opacity: 0,
+          ease: "power4.out",
+        });
+        gsap.to(description, {
+          y: -30,
+          opacity: 0,
+        });
+        gsap.to(svg, {
+          y: 50,
+          rotate: 0,
+          duration: 0.2,
+        });
+      }
+
+      function animateSvgStart(element) {
+        gsap.killTweensOf([element]);
+
+        gsap.to(element, {
+          scale: 1.2,
+          ease: "elastic.out(1)",
+        });
+      }
+
+      function animateSvgReverse(element) {
+        gsap.killTweensOf([element]);
+
+        gsap.to(element, {
+          scale: 1,
+          ease: "elastic.out(1)",
+        });
+      }
+
+      function scaleAnimation() {
+        for (let element of cards) {
+          element.addEventListener("mouseenter", () => {
+            animationFunctionStart(element);
+          });
+
+          element.addEventListener("mouseleave", () => {
+            animationFunctionReverse(element);
+          });
+        }
+
+        for (let element of svgs) {
+          element.addEventListener("mouseenter", () => {
+            animateSvgStart(element);
+          });
+          element.addEventListener("mouseleave", () => {
+            animateSvgReverse(element);
+          });
+        }
+      }
+
+      scaleAnimation();
+    </script>
+  </body>
+</html>
